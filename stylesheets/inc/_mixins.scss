@@ -1,0 +1,180 @@
+// Variable setup mixin.
+//
+// Pass a list of column modifiers you intend to use.
+//
+// "span": centered column of X size
+// "of": centered column of 1/X the container width
+// "offset": offset column by X columns (with margin)
+// "move": move column by X columns (via left/right)
+//
+// @param string $uses... The list of modifiers to use.
+
+@mixin gridstrap-use($uses...){
+	// Default all to false
+	$gridstrap-use-span:   false;
+	$gridstrap-use-of:     false;
+	$gridstrap-use-offset: false;
+	$gridstrap-use-push:   false;
+	$gridstrap-use-pull:   false;
+
+	// If first $use isn"t "all"...
+	@if nth($uses, 1) != "all" {
+		// Loop through and set matched options to true
+		@each $use in $uses {
+			@if $use == "span" {
+				$gridstrap-use-span:   true;
+			} @else if $use == "of" {
+				$gridstrap-use-of:   true;
+			} @else if $use == "offset" {
+				$gridstrap-use-offset:   true;
+			} @else if $use == "move" {
+				$gridstrap-use-push:   true;
+				$gridstrap-use-pull:   true;
+			}
+		}
+	} @else {
+		// Make all true
+		$gridstrap-use-span:   true;
+		$gridstrap-use-of:     true;
+		$gridstrap-use-offset: true;
+		$gridstrap-use-push:   true;
+		$gridstrap-use-pull:   true;
+	}
+}
+
+// Internal Use.
+// Sets up placeholders and contianer/row styling.
+
+@mixin gridstrap-base(){
+	%gridstrap-gutter-padding{
+		padding-right: $gridstrap-gutter-half;
+		padding-left: $gridstrap-gutter-half;
+	}
+
+	%gridstrap-col{
+		@extend %gridstrap-gutter-padding;
+		float: left;
+		position: relative;
+		min-height: 1px;
+	}
+
+	%gridstrap-span{
+		@extend %gridstrap-gutter-padding;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	%gridstrap-clearfix{
+		@include pie-clearfix();
+	}
+
+	.container,
+	.container-fluid{
+		@extend %gridstrap-clearfix, %gridstrap-gutter-padding;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.row{
+		@extend %gridstrap-clearfix;
+		margin-left: $gridstrap-gutter-half;
+		margin-right: $gridstrap-gutter-half;
+	}
+}
+
+// Setup the base styling for columns/spans
+//
+// Applies $midfix to class names if present.
+// e.g. "sm" > .col-sm-X
+//
+// @param string $midfix Optional The midfix to use on the classes
+
+@mixin gridstrap-setup-columns($midfix:""){
+	@if $midfix != "" {
+		$midfix: $midfix + "-";
+	}
+
+	@for $i from 1 through $gridstrap-cols {
+		.col-#{$midfix}#{$i}{
+			@extend %gridstrap-col;
+		}
+
+		@if $gridstrap-use-span {
+			.span-#{$midfix}#{$i}{
+				@extend %gridstrap-span;
+			}
+		}
+	}
+}
+
+// Sets the actual sizing for the columns/spans/ofs,
+// and modifiers
+//
+// Applies $midfix to class names if present.
+// e.g. "sm" > .col-sm-X
+//
+// @param string $midfix Optional The midfix to use on the classes
+
+@mixin gridstrap-build-columns($midfix: "") {
+	@if $midfix != "" {
+		$midfix: $midfix + "-";
+	}
+
+	// Add classes/modifiers for each column number
+	@for $i from 1 through $gridstrap-cols {
+		$width: ($i / $gridstrap-cols) * 100%;
+
+		.col-#{$midfix}#{$i}{
+			width: $width;
+		}
+
+		@if $gridstrap-use-span {
+			.span-#{$midfix}#{$i}{
+				width: $width;
+			}
+		}
+
+		@if $gridstrap-use-of {
+			.of-#{$midfix}#{$i}{
+				width: 100% / $i;
+			}
+		}
+
+		// No modifiers for final column
+		@if $i < $gridstrap-cols {
+			@if $gridstrap-use-offset {
+				.offset-#{$midfix}#{$i}{
+					margin-left: $width;
+				}
+			}
+			@if $gridstrap-use-push {
+				.push-#{$midfix}#{$i}{
+					left: $width;
+				}
+			}
+			@if $gridstrap-use-pull {
+				.pull-#{$midfix}#{$i}{
+					right: $width;
+				}
+			}
+		}
+	}
+
+	// Add resets
+	@if $gridstrap-use-offset {
+		.offset-#{$midfix}0{
+			margin-left: 0;
+		}
+	}
+	@if $gridstrap-use-push {
+		.push-#{$midfix}0{
+			margin-left: 0;
+		}
+	}
+	@if $gridstrap-use-pull {
+		.pull-#{$midfix}0{
+			margin-left: 0;
+		}
+	}
+}

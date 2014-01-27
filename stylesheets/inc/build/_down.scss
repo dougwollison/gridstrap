@@ -1,0 +1,36 @@
+@mixin gridstrap-build-down(){
+	@include gridstrap-build-simple();
+
+	// Tablet/Desktop/Widescreen Columns Setup
+	@include gridstrap-setup-columns("xs");
+	@include gridstrap-setup-columns("sm");
+	@include gridstrap-setup-columns("lg");
+
+	.container{
+		max-width: $md-screen - $gridstrap-gutter;
+	}
+
+	// Large (Widescreen) and up
+	@include lg-screen-min{
+		.container{
+			max-width: $lg-screen - $gridstrap-gutter;
+		}
+		@include gridstrap-build-columns("lg");
+	}
+
+	// Small (Tablet) and down
+	@include sm-screen-max{
+		.container{
+			max-width: $sm-screen - $gridstrap-gutter;
+		}
+		@include gridstrap-build-columns("sm");
+	}
+
+	// Extra-Small (Mobile) and down
+	@include xs-screen{
+		.container{
+			max-width: none;
+		}
+		@include gridstrap-build-columns("xs");
+	}
+}

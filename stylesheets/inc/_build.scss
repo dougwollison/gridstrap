@@ -1,0 +1,51 @@
+// Load the mixins for each mode
+@import "build/none";
+@import "build/up";
+@import "build/down";
+@import "build/exact";
+
+// The Main Mixin, sets up and builds the grid system
+//
+// The $responsive mode can be "up", "down", "exact" or "off"
+// "none": No breakpoints added for columns; plain columns
+//  	are the only columns available.
+// "up": The plain columns are the baseline, with sm/md/lg
+//  	overwriting as the min-width increases
+// "down": The plain columns are the medium screen ones,
+//  	with xs/sm/lg overwriting at min/max-width points
+// "exact": No plain columns, and each set applies strictly
+//  	to their breakpoin, with no bleed over.
+//
+// Non-zero values for $cols and $gutter will change and
+// overwrite $gridstrap-cols and $gridstrap-gutter(-half)
+//
+// @param string $responsive The responsive mode to use
+// @param mixed  $cols       The number of columns
+// @param mixed  $gutter     The width of the gutter
+
+@mixin gridstrap($responsive: "none", $cols: 0, $gutter: 0){
+	@if $cols != 0 {
+		$gridstrap-cols: $cols;
+	}
+	@if $gutter != 0 {
+		$gridstrap-gutter: $gutter;
+		$gridstrap-gutter-half: $gutter / 2;
+	}
+
+	// Base Grid Setup
+	@include gridstrap-base();
+
+	// Use appropriate buid mixin
+	@if $responsive == "none" {
+		@include gridstrap-build-simple();
+	}
+	@else if $responsive == "up" {
+		@include gridstrap-build-up();
+	}
+	@else if $responsive == "down" {
+		@include gridstrap-build-down();
+	}
+	@else if $responsive == "exact" {
+		@include gridstrap-build-exact();
+	}
+}
