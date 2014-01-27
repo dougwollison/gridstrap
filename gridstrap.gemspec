@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.date = "2012-01-27"
 
   # Gem Details
-  s.name = "Gridstrap"
+  s.name = "gridstrap"
   s.authors = ["Doug Wollison"]
   s.summary = %q{A bootstrap inspired grid system kit for Compass.}
   s.description = %q{A bootstrap inspired grid system kit for Compass.}
