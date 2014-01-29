@@ -9,7 +9,7 @@
 //
 // @param string $uses... The list of modifiers to use.
 
-@mixin gridstrap-use($uses...){
+@mixin gridstrap-use($uses...) {
 	// Default all to false
 	$gridstrap-use-span:   false;
 	$gridstrap-use-of:     false;
@@ -45,41 +45,45 @@
 // Internal Use.
 // Sets up placeholders and contianer/row styling.
 
-@mixin gridstrap-base(){
-	%gridstrap-gutter-padding{
+@mixin gridstrap-base {
+	*, *:before, *:after {
+		@include box-sizing(border-box);
+	}
+
+	%gridstrap-gutter-padding {
 		padding-right: $gridstrap-gutter-half;
 		padding-left: $gridstrap-gutter-half;
 	}
 
-	%gridstrap-col{
+	%gridstrap-col {
 		@extend %gridstrap-gutter-padding;
 		float: left;
 		position: relative;
 		min-height: 1px;
 	}
 
-	%gridstrap-span{
+	%gridstrap-span {
 		@extend %gridstrap-gutter-padding;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
-	%gridstrap-clearfix{
+	%gridstrap-clearfix {
 		@include pie-clearfix();
 	}
 
 	.container,
-	.container-fluid{
-		@extend %gridstrap-clearfix, %gridstrap-gutter-padding;
+	.container-fluid {
+		@extend %gridstrap-clearfix;
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
-	.row{
+	.row {
 		@extend %gridstrap-clearfix;
-		margin-left: $gridstrap-gutter-half;
-		margin-right: $gridstrap-gutter-half;
+		margin-left: -1 * $gridstrap-gutter-half;
+		margin-right: -1 * $gridstrap-gutter-half;
 	}
 }
 
@@ -90,18 +94,18 @@
 //
 // @param string $midfix Optional The midfix to use on the classes
 
-@mixin gridstrap-setup-columns($midfix:""){
+@mixin gridstrap-setup-columns($midfix:"") {
 	@if $midfix != "" {
 		$midfix: $midfix + "-";
 	}
 
 	@for $i from 1 through $gridstrap-cols {
-		.col-#{$midfix}#{$i}{
+		.col-#{$midfix}#{$i} {
 			@extend %gridstrap-col;
 		}
 
 		@if $gridstrap-use-span {
-			.span-#{$midfix}#{$i}{
+			.span-#{$midfix}#{$i} {
 				@extend %gridstrap-span;
 			}
 		}
@@ -125,18 +129,18 @@
 	@for $i from 1 through $gridstrap-cols {
 		$width: ($i / $gridstrap-cols) * 100%;
 
-		.col-#{$midfix}#{$i}{
+		.col-#{$midfix}#{$i} {
 			width: $width;
 		}
 
 		@if $gridstrap-use-span {
-			.span-#{$midfix}#{$i}{
+			.span-#{$midfix}#{$i} {
 				width: $width;
 			}
 		}
 
 		@if $gridstrap-use-of {
-			.of-#{$midfix}#{$i}{
+			.of-#{$midfix}#{$i} {
 				width: 100% / $i;
 			}
 		}
@@ -144,17 +148,17 @@
 		// No modifiers for final column
 		@if $i < $gridstrap-cols {
 			@if $gridstrap-use-offset {
-				.offset-#{$midfix}#{$i}{
+				.offset-#{$midfix}#{$i} {
 					margin-left: $width;
 				}
 			}
 			@if $gridstrap-use-push {
-				.push-#{$midfix}#{$i}{
+				.push-#{$midfix}#{$i} {
 					left: $width;
 				}
 			}
 			@if $gridstrap-use-pull {
-				.pull-#{$midfix}#{$i}{
+				.pull-#{$midfix}#{$i} {
 					right: $width;
 				}
 			}
@@ -163,17 +167,17 @@
 
 	// Add resets
 	@if $gridstrap-use-offset {
-		.offset-#{$midfix}0{
+		.offset-#{$midfix}0 {
 			margin-left: 0;
 		}
 	}
 	@if $gridstrap-use-push {
-		.push-#{$midfix}0{
+		.push-#{$midfix}0 {
 			margin-left: 0;
 		}
 	}
 	@if $gridstrap-use-pull {
-		.pull-#{$midfix}0{
+		.pull-#{$midfix}0 {
 			margin-left: 0;
 		}
 	}

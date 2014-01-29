@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   # Release Specific Information
-  s.version = "0.1.1"
-  s.date = "2012-01-27"
+  s.version = "0.1.2"
+  s.date = "2012-01-28"
 
   # Gem Details
   s.name = "gridstrap"
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = %q{A bootstrap inspired grid system kit for Compass.}
   s.email = "doug@wollison.net"
   s.homepage = "http://github.com/dougwollison/gridstrap"
-  s.license = 'GPL-2.0'
+  s.license = "GPL-2.0"
 
   # Gem Files
   s.files = %w(README.md)

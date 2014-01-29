@@ -23,7 +23,7 @@
 // @param mixed  $cols       The number of columns
 // @param mixed  $gutter     The width of the gutter
 
-@mixin gridstrap($responsive: "none", $cols: 0, $gutter: 0){
+@mixin gridstrap($responsive: "none", $cols: 0, $gutter: 0) {
 	@if $cols != 0 {
 		$gridstrap-cols: $cols;
 	}
@@ -33,19 +33,19 @@
 	}
 
 	// Base Grid Setup
-	@include gridstrap-base();
+	@include gridstrap-base;
 
 	// Use appropriate buid mixin
 	@if $responsive == "none" {
-		@include gridstrap-build-simple();
+		@include gridstrap-build-simple;
 	}
 	@else if $responsive == "up" {
-		@include gridstrap-build-up();
+		@include gridstrap-build-up;
 	}
 	@else if $responsive == "down" {
-		@include gridstrap-build-down();
+		@include gridstrap-build-down;
 	}
 	@else if $responsive == "exact" {
-		@include gridstrap-build-exact();
+		@include gridstrap-build-exact;
 	}
 }

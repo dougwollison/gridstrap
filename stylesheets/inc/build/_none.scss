@@ -1,5 +1,5 @@
-@mixin gridstrap-build-simple(){
+@mixin gridstrap-build-simple {
 	// Base Columns Setup/Build
-	@include gridstrap-setup-columns();
-	@include gridstrap-build-columns();
+	@include gridstrap-setup-columns;
+	@include gridstrap-build-columns;
 }
