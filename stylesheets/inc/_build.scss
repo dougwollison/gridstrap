@@ -29,7 +29,6 @@
 	}
 	@if $gutter != 0 {
 		$gridstrap-gutter: $gutter;
-		$gridstrap-gutter-half: $gutter / 2;
 	}
 
 	// Base Grid Setup
