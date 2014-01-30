@@ -1,19 +1,19 @@
 @mixin gridstrap-build-down {
 	@include gridstrap-build-simple;
+	
+	.container {
+		width: $md-screen;
+	}
 
 	// Tablet/Desktop/Widescreen Columns Setup
 	@include gridstrap-setup-columns("xs");
 	@include gridstrap-setup-columns("sm");
 	@include gridstrap-setup-columns("lg");
 
-	.container {
-		max-width: $md-screen - $gridstrap-gutter;
-	}
-
 	// Large (Widescreen) and up
 	@include lg-screen-min {
 		.container {
-			max-width: $lg-screen - $gridstrap-gutter;
+			width: $lg-screen;
 		}
 		@include gridstrap-build-columns("lg");
 	}
@@ -21,19 +21,15 @@
 	// Small (Tablet) and down
 	@include sm-screen-max {
 		.container {
-			max-width: $sm-screen - $gridstrap-gutter;
+			width: $sm-screen;
 		}
 		@include gridstrap-build-columns("sm");
 	}
 
 	// Extra-Small (Mobile) and down
 	@include xs-screen {
-		.container,
-		.container-fluid {
-			@include gridstrap-gutter-padding;
-		}
 		.container {
-			max-width: none;
+			width: auto;
 		}
 		@include gridstrap-build-columns("xs");
 	}
