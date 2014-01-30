@@ -53,6 +53,10 @@ modes are listed below:
   to their respective breakpoints.
 * `"none"`: No responsive, just a simple grid. You will have to specify the
   size for the .container when using this.
+  
+You can specify the breakpoints used via $sm/md/lg-screen variables. These
+widths should be the width of the container + the gutter width. For example,
+`$lg-screen: 1200px` and `$gutter: 30px` will result in a container of 1170px.
 
 Gridstrap comes with a few additional classes:
 
