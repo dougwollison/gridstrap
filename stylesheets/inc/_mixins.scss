@@ -50,20 +50,20 @@
 		@include box-sizing(border-box);
 	}
 
-	%gridstrap-gutter-padding {
-		padding-right: $gridstrap-gutter-half;
-		padding-left: $gridstrap-gutter-half;
+	%gridstrap-padding {
+		padding-left: $gridstrap-gutter * .5;
+		padding-right: $gridstrap-gutter * .5;
 	}
 
 	%gridstrap-col {
-		@extend %gridstrap-gutter-padding;
+		@extend %gridstrap-padding;
 		float: left;
 		position: relative;
 		min-height: 1px;
 	}
 
 	%gridstrap-span {
-		@extend %gridstrap-gutter-padding;
+		@extend %gridstrap-padding;
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -74,7 +74,7 @@
 
 	.container,
 	.container-fluid {
-		@extend %gridstrap-clearfix;
+		@extend %gridstrap-clearfix, %gridstrap-padding;
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
@@ -82,8 +82,8 @@
 
 	.row {
 		@extend %gridstrap-clearfix;
-		margin-left: -1 * $gridstrap-gutter-half;
-		margin-right: -1 * $gridstrap-gutter-half;
+		margin-left: $gridstrap-gutter * -.5;
+		margin-right: $gridstrap-gutter * -.5;
 	}
 }
 
