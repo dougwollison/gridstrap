@@ -6,6 +6,7 @@
 // "of": centered column of 1/X the container width
 // "offset": offset column by X columns (with margin)
 // "move": move column by X columns (via left/right)
+// "rtl": use LTR/RTL to dictate left/right direction
 //
 // @param string $uses... The list of modifiers to use.
 
@@ -16,6 +17,7 @@
 	$gridstrap-use-offset: false;
 	$gridstrap-use-push:   false;
 	$gridstrap-use-pull:   false;
+	$gridstrap-use-rtl:    false;
 
 	// If first $use isn"t "all"...
 	@if nth($uses, 1) != "all" {
@@ -30,6 +32,8 @@
 			} @else if $use == "move" {
 				$gridstrap-use-push:   true;
 				$gridstrap-use-pull:   true;
+			} @else if $use == "rtl" {
+				$gridstrap-use-rtl:   true;
 			}
 		}
 	} @else {
@@ -39,6 +43,7 @@
 		$gridstrap-use-offset: true;
 		$gridstrap-use-push:   true;
 		$gridstrap-use-pull:   true;
+		$gridstrap-use-rtl:    true;
 	}
 }
 
@@ -57,9 +62,20 @@
 
 	%gridstrap-col {
 		@extend %gridstrap-padding;
-		float: left;
 		position: relative;
 		min-height: 1px;
+
+		@if $gridstrap-use-rtl {
+			.ltr &{
+				float: left;
+			}
+			.rtl &{
+				float: right;
+			}
+		}
+		@else {
+			float: left;
+		}
 	}
 
 	%gridstrap-span {
@@ -149,17 +165,48 @@
 		@if $i < $gridstrap-cols {
 			@if $gridstrap-use-offset {
 				.offset-#{$midfix}#{$i} {
-					margin-left: $width;
+					@if $gridstrap-use-rtl {
+						.ltr &{
+							margin-left: $width;
+						}
+						.rtl &{
+							margin-right: $width;
+						}
+					}
+					@else {
+						margin-left: $width;
+					}
 				}
 			}
 			@if $gridstrap-use-push {
 				.push-#{$midfix}#{$i} {
-					left: $width;
+					@if $gridstrap-use-rtl {
+						.ltr &{
+							left: $width;
+						}
+						.rtl &{
+							right: $width;
+						}
+					}
+					@else {
+						left: $width;
+					}
 				}
 			}
 			@if $gridstrap-use-pull {
 				.pull-#{$midfix}#{$i} {
 					right: $width;
+					@if $gridstrap-use-rtl {
+						.ltr &{
+							right: $width;
+						}
+						.rtl &{
+							left: $width;
+						}
+					}
+					@else {
+						right: $width;
+					}
 				}
 			}
 		}
@@ -168,17 +215,47 @@
 	// Add resets
 	@if $gridstrap-use-offset {
 		.offset-#{$midfix}0 {
-			margin-left: 0;
+			@if $gridstrap-use-rtl {
+				.ltr &{
+					margin-left: 0;
+				}
+				.rtl &{
+					margin-right: 0;
+				}
+			}
+			@else {
+				margin-left: 0;
+			}
 		}
 	}
 	@if $gridstrap-use-push {
 		.push-#{$midfix}0 {
-			margin-left: 0;
+			@if $gridstrap-use-rtl {
+				.ltr &{
+					left: 0;
+				}
+				.rtl &{
+					right: 0;
+				}
+			}
+			@else {
+				left: 0;
+			}
 		}
 	}
 	@if $gridstrap-use-pull {
 		.pull-#{$midfix}0 {
-			margin-left: 0;
+			@if $gridstrap-use-rtl {
+				.ltr &{
+					right: 0;
+				}
+				.rtl &{
+					left: 0;
+				}
+			}
+			@else {
+				right: 0;
+			}
 		}
 	}
 }
