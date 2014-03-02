@@ -195,7 +195,6 @@
 			}
 			@if $gridstrap-use-pull {
 				.pull-#{$midfix}#{$i} {
-					right: $width;
 					@if $gridstrap-use-rtl {
 						.ltr &{
 							right: $width;

@@ -16,7 +16,7 @@
 	// Small (Tablet) only
 	@include sm-screen {
 		.container {
-			width: $sm-screen;
+			width: $sm-screen - $gridstrap-gutter;
 		}
 		@include gridstrap-build-columns("sm");
 	}
@@ -24,7 +24,7 @@
 	// Medium (Desktop) only
 	@include md-screen {
 		.container {
-			width: $md-screen;
+			width: $md-screen - $gridstrap-gutter;
 		}
 		@include gridstrap-build-columns("md");
 	}
@@ -32,7 +32,7 @@
 	// Large (Widescreen) only
 	@include lg-screen {
 		.container {
-			width: $lg-screen;
+			width: $lg-screen - $gridstrap-gutter;
 		}
 		@include gridstrap-build-columns("lg");
 	}
