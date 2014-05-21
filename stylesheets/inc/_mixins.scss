@@ -146,15 +146,15 @@
 
 	// Add classes/modifiers for each column number
 	@for $i from 1 through $gridstrap-cols {
-		$width: ($i / $gridstrap-cols) * 100%;
+		$gs-col-width: ($i / $gridstrap-cols) * 100%;
 
 		.col-#{$midfix}#{$i} {
-			width: $width;
+			width: $gs-col-width;
 		}
 
 		@if $gridstrap-use-span {
 			.span-#{$midfix}#{$i} {
-				width: $width;
+				width: $gs-col-width;
 			}
 		}
 
@@ -170,14 +170,14 @@
 				.offset-#{$midfix}#{$i} {
 					@if $gridstrap-use-rtl {
 						.ltr &{
-							margin-left: $width;
+							margin-left: $gs-col-width;
 						}
 						.rtl &{
-							margin-right: $width;
+							margin-right: $gs-col-width;
 						}
 					}
 					@else {
-						margin-left: $width;
+						margin-left: $gs-col-width;
 					}
 				}
 			}
@@ -185,14 +185,14 @@
 				.push-#{$midfix}#{$i} {
 					@if $gridstrap-use-rtl {
 						.ltr &{
-							left: $width;
+							left: $gs-col-width;
 						}
 						.rtl &{
-							right: $width;
+							right: $gs-col-width;
 						}
 					}
 					@else {
-						left: $width;
+						left: $gs-col-width;
 					}
 				}
 			}
@@ -200,14 +200,14 @@
 				.pull-#{$midfix}#{$i} {
 					@if $gridstrap-use-rtl {
 						.ltr &{
-							right: $width;
+							right: $gs-col-width;
 						}
 						.rtl &{
-							left: $width;
+							left: $gs-col-width;
 						}
 					}
 					@else {
-						right: $width;
+						right: $gs-col-width;
 					}
 				}
 			}
