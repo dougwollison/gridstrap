@@ -1,6 +1,6 @@
 @mixin gridstrap-build-down {
 	@include gridstrap-build-simple;
-	
+
 	.container {
 		width: $md-screen - $gridstrap-gutter;
 	}
@@ -11,7 +11,7 @@
 	@include gridstrap-setup-columns("lg");
 
 	// Large (Widescreen) and up
-	@include lg-screen-min {
+	@include lg-screen {
 		.container {
 			width: $lg-screen - $gridstrap-gutter;
 		}
