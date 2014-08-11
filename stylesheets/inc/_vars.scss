@@ -1,11 +1,19 @@
+// Fluid or Static mode? (percentage or pixel column widths
+$gridstrap-fluid:        true !default;
+
 // Column/Gutter values
-$gridstrap-cols:       12 !default;
-$gridstrap-gutter:     30px !default;
+$gridstrap-cols:         12 !default;
+$gridstrap-gutter:       30px !default;
+
+// Container width values
+$gridstrap-container-sm: 750px;
+$gridstrap-container-md: 970px;
+$gridstrap-container-lg: 1170px;
 
 // Span and Modifer class options
-$gridstrap-use-span:   true !default;
-$gridstrap-use-of:     true !default;
-$gridstrap-use-offset: true !default;
-$gridstrap-use-push:   true !default;
-$gridstrap-use-pull:   true !default;
-$gridstrap-use-rtl:    false !default;
+$gridstrap-use-span:     true !default;
+$gridstrap-use-of:       true !default;
+$gridstrap-use-offset:   true !default;
+$gridstrap-use-push:     true !default;
+$gridstrap-use-pull:     true !default;
+$gridstrap-use-rtl:      false !default;
