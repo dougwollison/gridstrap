@@ -1,7 +1,7 @@
 @import "compass/css3/box-sizing";
 @import "compass/utilities/general/clearfix";
 
-// Variable setup mixin.
+// -Use- Variable setup mixin.
 //
 // Pass a list of column modifiers you intend to use.
 //
@@ -15,38 +15,58 @@
 
 @mixin gridstrap-use($uses...) {
 	// Default all to false
-	$gridstrap-use-span:   false;
-	$gridstrap-use-of:     false;
-	$gridstrap-use-offset: false;
-	$gridstrap-use-push:   false;
-	$gridstrap-use-pull:   false;
-	$gridstrap-use-rtl:    false;
+	$gridstrap-use-span:   false !global;
+	$gridstrap-use-of:     false !global;
+	$gridstrap-use-offset: false !global;
+	$gridstrap-use-push:   false !global;
+	$gridstrap-use-pull:   false !global;
+	$gridstrap-use-rtl:    false !global;
 
 	// If first $use isn"t "all"...
 	@if nth($uses, 1) != "all" {
 		// Loop through and set matched options to true
 		@each $use in $uses {
 			@if $use == "span" {
-				$gridstrap-use-span:   true;
+				$gridstrap-use-span:   true !global;
 			} @else if $use == "of" {
-				$gridstrap-use-of:   true;
+				$gridstrap-use-of:   true !global;
 			} @else if $use == "offset" {
-				$gridstrap-use-offset:   true;
+				$gridstrap-use-offset:   true !global;
 			} @else if $use == "move" {
-				$gridstrap-use-push:   true;
-				$gridstrap-use-pull:   true;
+				$gridstrap-use-push:   true !global;
+				$gridstrap-use-pull:   true !global;
 			} @else if $use == "rtl" {
-				$gridstrap-use-rtl:   true;
+				$gridstrap-use-rtl:   true !global;
 			}
 		}
 	} @else {
 		// Make all true
-		$gridstrap-use-span:   true;
-		$gridstrap-use-of:     true;
-		$gridstrap-use-offset: true;
-		$gridstrap-use-push:   true;
-		$gridstrap-use-pull:   true;
-		$gridstrap-use-rtl:    true;
+		$gridstrap-use-span:   true !global;
+		$gridstrap-use-of:     true !global;
+		$gridstrap-use-offset: true !global;
+		$gridstrap-use-push:   true !global;
+		$gridstrap-use-pull:   true !global;
+		$gridstrap-use-rtl:    true !global;
+	}
+}
+
+// Container setup mixin.
+//
+// Pass the small, medium and large container sizes to use.
+//
+// @param number $sm The small (e.g. tablet) container width
+// @param number $md The medium (e.g. laptop) container width
+// @param number $lg The large (e.g. desktop) container width
+
+@mixin gridstrap-sizes($sm: 0, $md: 0, $lg: 0) {
+	@if $sm != 0{
+		$gridstrap-container-sm: $sm !global;
+	}
+	@if $md != 0{
+		$gridstrap-container-md: $md !global;
+	}
+	@if $lg != 0{
+		$gridstrap-container-lg: $lg !global;
 	}
 }
 
@@ -137,16 +157,17 @@
 // Applies $midfix to class names if present.
 // e.g. "sm" > .col-sm-X
 //
-// @param string $midfix Optional The midfix to use on the classes
+// @param string $midfix    Optional The midfix to use on the classes
+// @param number $container The container size to base the widths on
 
-@mixin gridstrap-build-columns($midfix: "") {
+@mixin gridstrap-build-columns($midfix: "", $container: 100%) {
 	@if $midfix != "" {
 		$midfix: $midfix + "-";
 	}
 
 	// Add classes/modifiers for each column number
 	@for $i from 1 through $gridstrap-cols {
-		$gs-col-width: ($i / $gridstrap-cols) * 100%;
+		$gs-col-width: ($i / $gridstrap-cols) * $container;
 
 		.col-#{$midfix}#{$i} {
 			width: $gs-col-width;
@@ -160,7 +181,7 @@
 
 		@if $gridstrap-use-of {
 			.of-#{$midfix}#{$i} {
-				width: 100% / $i;
+				width: $container / $i;
 			}
 		}
 
@@ -260,4 +281,25 @@
 			}
 		}
 	}
+}
+
+// Setup a breakpoint for columns of a certain prefix and container size
+//
+// Will set the container width and call the build-columns mixin,
+// passing the appropriate contianer size based on $gridstrap-fluid
+//
+//
+
+@mixin gridstrap-breakpoint($width, $midfix: ''){
+	$container: 100%;
+
+	@if $width != 'auto' {
+		$container: if($gridstrap-fluid, 100%, $width);
+	}
+
+	.container {
+		width: $width;
+	}
+
+	@include gridstrap-build-columns($midfix, $container);
 }
