@@ -6,34 +6,22 @@
 	@include gridstrap-setup-columns("lg");
 
 	// Extra-Small (Mobile) and down
-	@include xs-screen($gridstrap-gutter) {
-		.container {
-			width: auto;
-		}
-		@include gridstrap-build-columns("xs");
+	@include xs-screen {
+		@include gridstrap-breakpoint(auto, "xs");
 	}
 
 	// Small (Tablet) only
 	@include sm-screen {
-		.container {
-			width: $sm-screen - $gridstrap-gutter;
-		}
-		@include gridstrap-build-columns("sm");
+		@include gridstrap-breakpoint($gridstrap-container-sm, "sm");
 	}
 
 	// Medium (Desktop) only
 	@include md-screen {
-		.container {
-			width: $md-screen - $gridstrap-gutter;
-		}
-		@include gridstrap-build-columns("md");
+		@include gridstrap-breakpoint($gridstrap-container-md, "md");
 	}
 
 	// Large (Widescreen) only
 	@include lg-screen {
-		.container {
-			width: $lg-screen - $gridstrap-gutter;
-		}
-		@include gridstrap-build-columns("lg");
+		@include gridstrap-breakpoint($gridstrap-container-lg, "lg");
 	}
 }
