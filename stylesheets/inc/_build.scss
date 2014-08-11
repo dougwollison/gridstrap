@@ -22,14 +22,17 @@
 // @param string $responsive The responsive mode to use
 // @param mixed  $cols       The number of columns
 // @param mixed  $gutter     The width of the gutter
+// @param mixed  $fluid      Make the columns % or px based
 
-@mixin gridstrap($responsive: "none", $cols: 0, $gutter: 0) {
+@mixin gridstrap($responsive: "none", $fluid: true, $cols: 0, $gutter: 0) {
 	@if $cols != 0 {
-		$gridstrap-cols: $cols;
+		$gridstrap-cols: $cols !global;
 	}
 	@if $gutter != 0 {
-		$gridstrap-gutter: $gutter;
+		$gridstrap-gutter: $gutter !global;
 	}
+
+	$gridstrap-fluid: $fluid !global;
 
 	// Base Grid Setup
 	@include gridstrap-base;
