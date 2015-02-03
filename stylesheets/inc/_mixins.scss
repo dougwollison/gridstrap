@@ -148,6 +148,12 @@
 				@extend %gridstrap-span;
 			}
 		}
+
+		@if $gridstrap-use-of {
+			.of-#{$midfix}#{$i} {
+				@extend %gridstrap-span;
+			}
+		}
 	}
 }
 
