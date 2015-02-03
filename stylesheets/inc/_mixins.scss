@@ -151,7 +151,7 @@
 
 		@if $gridstrap-use-of {
 			.of-#{$midfix}#{$i} {
-				@extend %gridstrap-span;
+				@extend %gridstrap-col;
 			}
 		}
 	}
