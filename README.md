@@ -62,6 +62,7 @@ Gridstrap comes with a few additional classes:
 
 * `.span-`: A centered column of a particular column size.
 * `.of-`: A centered column of 1/Xth the container width.
+* `.colof-`: A regular column of 1/Xth the container width.
 * `.offset-`: Offset the column by X columns via margin.
 * `.push/pull-`: Move the column over by X columns via left/right.
 
