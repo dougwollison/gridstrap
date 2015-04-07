@@ -6,7 +6,8 @@
 // Pass a list of column modifiers you intend to use.
 //
 // "span": centered column of X size
-// "of": regular column of 1/X the container width
+// "of": centered column of 1/X the container width
+// "colof": regular column of 1/X the container width
 // "offset": offset column by X columns (with margin)
 // "move": move column by X columns (via left/right)
 // "rtl": use LTR/RTL to dictate left/right direction
@@ -17,6 +18,7 @@
 	// Default all to false
 	$gridstrap-use-span:   false;
 	$gridstrap-use-of:     false;
+	$gridstrap-use-colof:  false;
 	$gridstrap-use-offset: false;
 	$gridstrap-use-push:   false;
 	$gridstrap-use-pull:   false;
@@ -27,22 +29,25 @@
 		// Loop through and set matched options to true
 		@each $use in $uses {
 			@if $use == "span" {
-				$gridstrap-use-span:   true;
+				$gridstrap-use-span: true;
 			} @else if $use == "of" {
-				$gridstrap-use-of:   true;
+				$gridstrap-use-of: true;
+			} @else if $use == "colof" {
+				$gridstrap-use-colof: true;
 			} @else if $use == "offset" {
-				$gridstrap-use-offset:   true;
+				$gridstrap-use-offset: true;
 			} @else if $use == "move" {
-				$gridstrap-use-push:   true;
-				$gridstrap-use-pull:   true;
+				$gridstrap-use-push: true;
+				$gridstrap-use-pull: true;
 			} @else if $use == "rtl" {
-				$gridstrap-use-rtl:   true;
+				$gridstrap-use-rtl: true;
 			}
 		}
 	} @else {
 		// Make all true
 		$gridstrap-use-span:   true;
 		$gridstrap-use-of:     true;
+		$gridstrap-use-colof:  true;
 		$gridstrap-use-offset: true;
 		$gridstrap-use-push:   true;
 		$gridstrap-use-pull:   true;
@@ -151,6 +156,12 @@
 
 		@if $gridstrap-use-of {
 			.of-#{$midfix}#{$i} {
+				@extend %gridstrap-span;
+			}
+		}
+
+		@if $gridstrap-use-colof {
+			.colof-#{$midfix}#{$i} {
 				@extend %gridstrap-col;
 			}
 		}
@@ -187,6 +198,12 @@
 
 		@if $gridstrap-use-of {
 			.of-#{$midfix}#{$i} {
+				width: $container / $i;
+			}
+		}
+
+		@if $gridstrap-use-colof {
+			.colof-#{$midfix}#{$i} {
 				width: $container / $i;
 			}
 		}
