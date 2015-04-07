@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   # Release Specific Information
-  s.version = "1.0.2"
-  s.date = "2014-08-14"
+  s.version = "1.1.0"
+  s.date = "2015-04-07"
 
   # Gem Details
   s.name = "gridstrap"
