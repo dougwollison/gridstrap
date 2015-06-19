@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   # Release Specific Information
-  s.version = "1.1.1"
-  s.date = "2015-04-07"
+  s.version = "1.1.2"
+  s.date = "2015-06-19"
 
   # Gem Details
   s.name = "gridstrap"
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   # Gem Bookkeeping
   s.rubygems_version = %q{1.3.6}
+  s.add_dependency("sass", [">= 3.4.0"])
   s.add_dependency("compass", [">= 0.11"])
   s.add_dependency("handysass", [">= 0.1.0"])
 end
