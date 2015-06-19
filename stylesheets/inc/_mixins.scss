@@ -16,42 +16,42 @@
 
 @mixin gridstrap-use($uses...) {
 	// Default all to false
-	$gridstrap-use-span:   false;
-	$gridstrap-use-of:     false;
-	$gridstrap-use-colof:  false;
-	$gridstrap-use-offset: false;
-	$gridstrap-use-push:   false;
-	$gridstrap-use-pull:   false;
-	$gridstrap-use-rtl:    false;
+	$gridstrap-use-span:   false !global;
+	$gridstrap-use-of:     false !global;
+	$gridstrap-use-colof:  false !global;
+	$gridstrap-use-offset: false !global;
+	$gridstrap-use-push:   false !global;
+	$gridstrap-use-pull:   false !global;
+	$gridstrap-use-rtl:    false !global;
 
 	// If first $use isn"t "all"...
 	@if nth($uses, 1) != "all" {
 		// Loop through and set matched options to true
 		@each $use in $uses {
 			@if $use == "span" {
-				$gridstrap-use-span: true;
+				$gridstrap-use-span: true !global;
 			} @else if $use == "of" {
-				$gridstrap-use-of: true;
+				$gridstrap-use-of: true !global;
 			} @else if $use == "colof" {
-				$gridstrap-use-colof: true;
+				$gridstrap-use-colof: true !global;
 			} @else if $use == "offset" {
-				$gridstrap-use-offset: true;
+				$gridstrap-use-offset: true !global;
 			} @else if $use == "move" {
-				$gridstrap-use-push: true;
-				$gridstrap-use-pull: true;
+				$gridstrap-use-push: true !global;
+				$gridstrap-use-pull: true !global;
 			} @else if $use == "rtl" {
-				$gridstrap-use-rtl: true;
+				$gridstrap-use-rtl: true !global;
 			}
 		}
 	} @else {
 		// Make all true
-		$gridstrap-use-span:   true;
-		$gridstrap-use-of:     true;
-		$gridstrap-use-colof:  true;
-		$gridstrap-use-offset: true;
-		$gridstrap-use-push:   true;
-		$gridstrap-use-pull:   true;
-		$gridstrap-use-rtl:    true;
+		$gridstrap-use-span:   true !global;
+		$gridstrap-use-of:     true !global;
+		$gridstrap-use-colof:  true !global;
+		$gridstrap-use-offset: true !global;
+		$gridstrap-use-push:   true !global;
+		$gridstrap-use-pull:   true !global;
+		$gridstrap-use-rtl:    true !global;
 	}
 }
 
