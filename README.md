@@ -58,6 +58,13 @@ You can specify the breakpoints used via $sm/md/lg-screen variables. These
 widths should be the width of the container + the gutter width. For example,
 `$lg-screen: 1200px` and `$gutter: 30px` will result in a container of 1170px.
 
+You can define additional breakpoints by defining them via `gridstrap-setup-columns`
+and calling `gridstrap-breakpoint` with the desired container width and midfix
+value. Example, for REALLY wide screens:
+
+    @include gridstrap-setup-columns('hg');
+    @include gridstrap-breakpoint(1650px, 'hg');
+
 Gridstrap comes with a few additional classes:
 
 * `.span-`: A centered column of a particular column size.
