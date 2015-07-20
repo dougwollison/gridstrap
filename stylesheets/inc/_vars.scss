@@ -4,6 +4,7 @@ $gridstrap-fluid: true !default;
 // Column/Gutter values
 $gridstrap-cols:   12   !default;
 $gridstrap-gutter: 30px !default;
+$gridstrap-margin: $gridstrap-gutter !default;
 
 // Container width values
 $gridstrap-container-sm: 750px  !default;

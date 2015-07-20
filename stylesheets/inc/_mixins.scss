@@ -118,10 +118,12 @@
 
 	.container,
 	.container-fluid {
-		@extend %gridstrap-clearfix, %gridstrap-padding;
+		@extend %gridstrap-clearfix;
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
+		padding-left: $gridstrap-margin * .5;
+		padding-right: $gridstrap-margin * .5;
 	}
 
 	.row {
